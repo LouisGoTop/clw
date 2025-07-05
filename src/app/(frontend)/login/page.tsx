@@ -2,15 +2,27 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { useLogin } from '@/hooks/useAuth'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+
+  const loginMutation = useLogin()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // 这里实现登录逻辑
-    console.log('登录:', { email, password })
+    setError('')
+
+    loginMutation.mutate(
+      { email, password },
+      {
+        onError: error => {
+          setError(error.message)
+        },
+      }
+    )
   }
 
   return (
@@ -95,12 +107,19 @@ export default function LoginPage() {
               </div>
             </div>
 
+            {error && (
+              <div className="rounded-md border border-red-200 bg-red-50 p-4">
+                <div className="text-sm text-red-700">{error}</div>
+              </div>
+            )}
+
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                disabled={loginMutation.isPending}
+                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-400"
               >
-                登录
+                {loginMutation.isPending ? '登录中...' : '登录'}
               </button>
             </div>
           </form>

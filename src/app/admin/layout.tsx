@@ -2,6 +2,7 @@
 
 import AdminHeader from '@/components/AdminHeader'
 import AdminSidebar from '@/components/AdminSidebar'
+import RouteGuard from '@/components/RouteGuard'
 
 export default function AdminLayout({
   children,
@@ -9,14 +10,16 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AdminHeader />
-      <div className="flex">
-        <AdminSidebar />
-        <main className="flex-1 p-8">
-          <div className="mx-auto max-w-7xl">{children}</div>
-        </main>
+    <RouteGuard requireAuth requireAdmin redirectTo="/login">
+      <div className="min-h-screen bg-gray-50">
+        <AdminHeader />
+        <div className="flex">
+          <AdminSidebar />
+          <main className="flex-1 p-8">
+            <div className="mx-auto max-w-7xl">{children}</div>
+          </main>
+        </div>
       </div>
-    </div>
+    </RouteGuard>
   )
 }

@@ -8,16 +8,16 @@ export default function Home() {
         {/* 搜索栏 */}
         <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
           <div className="mb-4 flex flex-wrap gap-4">
-            <button className="rounded-md bg-blue-600 px-4 py-2 text-white">
+            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
               供应商
             </button>
-            <button className="rounded-md bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300">
+            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
               采购商
             </button>
-            <button className="rounded-md bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300">
+            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
               招募投标
             </button>
-            <button className="rounded-md bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300">
+            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
               主体/项目
             </button>
           </div>
@@ -27,7 +27,7 @@ export default function Home() {
               placeholder="请输入你想要找的企业、产品或服务"
               className="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
-            <button className="rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
+            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
               搜索
             </button>
           </div>

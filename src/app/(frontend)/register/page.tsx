@@ -1,8 +1,37 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
+import { useRegister } from '@/hooks/useAuth'
 
 export default function RegisterPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [name, setName] = useState('')
+  const [error, setError] = useState('')
+
+  const registerMutation = useRegister()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setError('')
+
+    if (password !== confirmPassword) {
+      setError('两次输入的密码不一致')
+      return
+    }
+
+    registerMutation.mutate(
+      { email, password, name },
+      {
+        onError: error => {
+          setError(error.message)
+        },
+      }
+    )
+  }
+
   return (
     <div className="flex min-h-screen flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -14,69 +43,22 @@ export default function RegisterPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
-                htmlFor="userType"
+                htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
               >
-                用户类型
-              </label>
-              <select
-                id="userType"
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
-              >
-                <option>供应商</option>
-                <option>采购商</option>
-                <option>个人用户</option>
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="companyName"
-                className="block text-sm font-medium text-gray-700"
-              >
-                企业名称
+                姓名
               </label>
               <input
-                id="companyName"
+                id="name"
                 type="text"
                 required
+                value={name}
+                onChange={e => setName(e.target.value)}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
-                placeholder="请输入企业名称"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="contactName"
-                className="block text-sm font-medium text-gray-700"
-              >
-                联系人姓名
-              </label>
-              <input
-                id="contactName"
-                type="text"
-                required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
-                placeholder="请输入联系人姓名"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700"
-              >
-                手机号码
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
-                placeholder="请输入手机号码"
+                placeholder="请输入您的姓名"
               />
             </div>
 
@@ -91,6 +73,8 @@ export default function RegisterPage() {
                 id="email"
                 type="email"
                 required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
                 placeholder="请输入邮箱地址"
               />
@@ -107,6 +91,8 @@ export default function RegisterPage() {
                 id="password"
                 type="password"
                 required
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
                 placeholder="请输入密码"
               />
@@ -123,6 +109,8 @@ export default function RegisterPage() {
                 id="confirmPassword"
                 type="password"
                 required
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
                 placeholder="请再次输入密码"
               />
@@ -150,12 +138,19 @@ export default function RegisterPage() {
               </label>
             </div>
 
+            {error && (
+              <div className="rounded-md border border-red-200 bg-red-50 p-4">
+                <div className="text-sm text-red-700">{error}</div>
+              </div>
+            )}
+
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                disabled={registerMutation.isPending}
+                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-400"
               >
-                注册
+                {registerMutation.isPending ? '注册中...' : '注册'}
               </button>
             </div>
           </form>

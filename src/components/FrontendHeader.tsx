@@ -2,9 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useAuthStatus, useLogout } from '@/hooks/useAuth'
 
 export default function FrontendHeader() {
   const pathname = usePathname()
+  const { isAuthenticated, user } = useAuthStatus()
+  const logoutMutation = useLogout()
 
   const isActiveLink = (href: string) => {
     if (href === '/') {
@@ -52,18 +55,39 @@ export default function FrontendHeader() {
             ))}
           </nav>
           <div className="flex items-center space-x-4">
-            <Link
-              href="/login"
-              className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            >
-              登录
-            </Link>
-            <Link
-              href="/register"
-              className="text-gray-700 hover:text-blue-600"
-            >
-              注册
-            </Link>
+            {isAuthenticated && user ? (
+              <>
+                <span className="text-gray-700">欢迎, {user.name}</span>
+                <Link
+                  href="/profile"
+                  className="text-gray-700 hover:text-blue-600"
+                >
+                  个人资料
+                </Link>
+                <button
+                  onClick={() => logoutMutation.mutate()}
+                  disabled={logoutMutation.isPending}
+                  className="text-gray-700 hover:text-blue-600 disabled:text-gray-400"
+                >
+                  {logoutMutation.isPending ? '登出中...' : '登出'}
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                >
+                  登录
+                </Link>
+                <Link
+                  href="/register"
+                  className="text-gray-700 hover:text-blue-600"
+                >
+                  注册
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
