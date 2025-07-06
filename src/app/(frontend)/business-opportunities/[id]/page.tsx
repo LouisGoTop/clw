@@ -1,12 +1,13 @@
 import Link from 'next/link'
 
 interface BusinessOpportunityDetailPageProps {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
-export default function BusinessOpportunityDetailPage({
+export default async function BusinessOpportunityDetailPage({
   params,
 }: BusinessOpportunityDetailPageProps) {
+  const { id } = await params
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 主要内容区域 */}
@@ -41,7 +42,7 @@ export default function BusinessOpportunityDetailPage({
 
         <div className="rounded-lg bg-white p-8 shadow-md">
           <h1 className="mb-4 text-3xl font-bold text-gray-900">
-            商机详情页面 - ID: {params.id}
+            商机详情页面 - ID: {id}
           </h1>
 
           <div className="space-y-6">

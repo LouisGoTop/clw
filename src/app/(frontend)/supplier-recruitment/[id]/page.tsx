@@ -1,12 +1,13 @@
 import Link from 'next/link'
 
 interface RecruitmentDetailPageProps {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
-export default function RecruitmentDetailPage({
+export default async function RecruitmentDetailPage({
   params,
 }: RecruitmentDetailPageProps) {
+  const { id } = await params
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 主要内容区域 */}
@@ -41,7 +42,7 @@ export default function RecruitmentDetailPage({
 
         <div className="rounded-lg bg-white p-8 shadow-md">
           <h1 className="mb-4 text-3xl font-bold text-gray-900">
-            招募详情页面 - ID: {params.id}
+            招募详情页面 - ID: {id}
           </h1>
 
           <div className="space-y-6">

@@ -1,3 +1,5 @@
+'use client'
+import { Button } from '@heroui/react'
 import Link from 'next/link'
 
 export default function Home() {
@@ -8,18 +10,10 @@ export default function Home() {
         {/* 搜索栏 */}
         <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
           <div className="mb-4 flex flex-wrap gap-4">
-            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-              供应商
-            </button>
-            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-              采购商
-            </button>
-            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-              招募投标
-            </button>
-            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-              主体/项目
-            </button>
+            <Button color="primary">供应商</Button>
+            <Button>采购商</Button>
+            <Button>招募投标</Button>
+            <Button>主体/项目</Button>
           </div>
           <div className="flex gap-4">
             <input
@@ -27,9 +21,7 @@ export default function Home() {
               placeholder="请输入你想要找的企业、产品或服务"
               className="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
-            <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-              搜索
-            </button>
+            <Button>搜索</Button>
           </div>
         </div>
 
@@ -116,6 +108,3 @@ export default function Home() {
     </>
   )
 }
-
-// 启用 SSG
-export const dynamic = 'force-static'

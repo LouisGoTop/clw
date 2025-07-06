@@ -1,12 +1,20 @@
 import Link from 'next/link'
+import { use } from 'react'
 
 interface EnterpriseDetailPageProps {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default function EnterpriseDetailPage({
   params,
 }: EnterpriseDetailPageProps) {
+  // 使用 React.use 处理 Promise 类型的 params
+  // 优点：
+  // 1. 不需要 async 函数
+  // 2. 更简洁的语法
+  // 3. React 会自动处理 Promise 的解析
+  const { id } = use(params)
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 主要内容区域 */}
@@ -41,7 +49,7 @@ export default function EnterpriseDetailPage({
 
         <div className="rounded-lg bg-white p-8 shadow-md">
           <h1 className="mb-4 text-3xl font-bold text-gray-900">
-            企业详情页面 - ID: {params.id}
+            企业详情页面 - ID: {id}
           </h1>
 
           <div className="space-y-6">

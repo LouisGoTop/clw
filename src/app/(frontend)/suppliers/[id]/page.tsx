@@ -1,12 +1,13 @@
 import Link from 'next/link'
 
 interface SupplierDetailPageProps {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
-export default function SupplierDetailPage({
+export default async function SupplierDetailPage({
   params,
 }: SupplierDetailPageProps) {
+  const { id } = await params
   return (
     <>
       {/* 主要内容区域 */}
@@ -41,7 +42,7 @@ export default function SupplierDetailPage({
 
         <div className="rounded-lg bg-white p-8 shadow-md">
           <h1 className="mb-4 text-3xl font-bold text-gray-900">
-            供应商详情页面 - ID: {params.id}
+            供应商详情页面 - ID: {id}
           </h1>
           <div className="space-y-6">
             <div className="rounded-lg border border-gray-200 p-6">
