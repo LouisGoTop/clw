@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Button } from '@heroui/react'
 
 export default function EnterprisesPage() {
   return (
@@ -17,9 +18,7 @@ export default function EnterprisesPage() {
                   placeholder="输入企业名称或关键词"
                   className="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
-                <button className="rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
-                  搜索
-                </button>
+                <Button color="primary">搜索</Button>
               </div>
             </div>
 

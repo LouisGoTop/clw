@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Button } from '@heroui/react'
 
 interface BusinessOpportunityDetailPageProps {
   params: Promise<{ id: string }>
@@ -73,12 +74,8 @@ export default async function BusinessOpportunityDetailPage({
             </div>
 
             <div className="flex space-x-4">
-              <button className="rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
-                表达合作意向
-              </button>
-              <button className="rounded-md border border-gray-300 px-6 py-2 text-gray-700 hover:bg-gray-50">
-                收藏商机
-              </button>
+              <Button color="primary">表达合作意向</Button>
+              <Button variant="bordered">收藏商机</Button>
             </div>
           </div>
         </div>

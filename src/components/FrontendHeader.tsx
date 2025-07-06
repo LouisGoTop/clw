@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuthStatus, useLogout } from '@/hooks/useAuth'
+import { Button } from '@heroui/react'
 
 export default function FrontendHeader() {
   const pathname = usePathname()
@@ -64,13 +65,13 @@ export default function FrontendHeader() {
                 >
                   个人资料
                 </Link>
-                <button
+                <Button
+                  variant="light"
+                  isLoading={logoutMutation.isPending}
                   onClick={() => logoutMutation.mutate()}
-                  disabled={logoutMutation.isPending}
-                  className="text-gray-700 hover:text-blue-600 disabled:text-gray-400"
                 >
                   {logoutMutation.isPending ? '登出中...' : '登出'}
-                </button>
+                </Button>
               </>
             ) : (
               <>

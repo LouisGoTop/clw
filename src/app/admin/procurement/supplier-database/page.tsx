@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { Button } from '@heroui/react'
 
 export default function SupplierDatabasePage() {
   return (
@@ -62,15 +63,9 @@ export default function SupplierDatabasePage() {
             {/* 操作按钮 */}
             <div className="mb-6 flex items-center justify-between">
               <div className="flex space-x-4">
-                <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                  添加供应商
-                </button>
-                <button className="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700">
-                  批量导入
-                </button>
-                <button className="rounded-md bg-gray-600 px-4 py-2 text-white hover:bg-gray-700">
-                  导出数据
-                </button>
+                <Button color="primary">添加供应商</Button>
+                <Button color="success">批量导入</Button>
+                <Button color="secondary">导出数据</Button>
               </div>
               <div className="flex space-x-2">
                 <input
@@ -78,9 +73,7 @@ export default function SupplierDatabasePage() {
                   placeholder="搜索供应商..."
                   className="rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
-                <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                  搜索
-                </button>
+                <Button color="primary">搜索</Button>
               </div>
             </div>
 
@@ -137,12 +130,12 @@ export default function SupplierDatabasePage() {
                           </td>
                           <td className="px-6 py-4 text-sm font-medium whitespace-nowrap">
                             <div className="flex space-x-2">
-                              <button className="text-blue-600 hover:text-blue-900">
+                              <Button variant="light" size="sm" color="primary">
                                 编辑
-                              </button>
-                              <button className="text-red-600 hover:text-red-900">
+                              </Button>
+                              <Button variant="light" size="sm" color="danger">
                                 删除
-                              </button>
+                              </Button>
                             </div>
                           </td>
                         </tr>
@@ -156,21 +149,21 @@ export default function SupplierDatabasePage() {
             {/* 分页 */}
             <div className="mt-6 flex justify-center">
               <nav className="flex items-center space-x-2">
-                <button className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                <Button variant="light" size="sm">
                   上一页
-                </button>
-                <button className="rounded bg-blue-600 px-3 py-2 text-sm font-medium text-white">
+                </Button>
+                <Button color="primary" size="sm">
                   1
-                </button>
-                <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">
+                </Button>
+                <Button variant="light" size="sm">
                   2
-                </button>
-                <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">
+                </Button>
+                <Button variant="light" size="sm">
                   3
-                </button>
-                <button className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                </Button>
+                <Button variant="light" size="sm">
                   下一页
-                </button>
+                </Button>
               </nav>
             </div>
           </div>

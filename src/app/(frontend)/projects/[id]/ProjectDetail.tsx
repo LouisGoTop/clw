@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProjectById } from '@/api/projects'
 import Link from 'next/link'
+import { Button } from '@heroui/react'
 
 export function ProjectDetail({ projectId }: { projectId: string }) {
   const { data, isLoading, isError, error } = useQuery({
@@ -130,12 +131,12 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
                 </div>
               </div>
               <div className="mt-6 flex flex-col space-y-3">
-                <button className="w-full rounded-md bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
+                <Button color="primary" className="w-full">
                   立即投标
-                </button>
-                <button className="w-full rounded-md border border-gray-300 px-6 py-3 text-gray-700 hover:bg-gray-50">
+                </Button>
+                <Button variant="bordered" className="w-full">
                   收藏项目
-                </button>
+                </Button>
               </div>
             </div>
             <div className="rounded-lg bg-white p-6 shadow-md">

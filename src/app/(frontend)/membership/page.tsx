@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { Button } from '@heroui/react'
 
 export default function MembershipPage() {
   return (
@@ -44,9 +47,9 @@ export default function MembershipPage() {
             </div>
 
             <div className="mt-6">
-              <button className="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50">
+              <Button variant="bordered" className="w-full">
                 当前套餐
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -81,9 +84,9 @@ export default function MembershipPage() {
             </div>
 
             <div className="mt-6">
-              <button className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+              <Button color="primary" className="w-full">
                 立即购买
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -118,9 +121,9 @@ export default function MembershipPage() {
             </div>
 
             <div className="mt-6">
-              <button className="w-full rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800">
+              <Button color="secondary" className="w-full">
                 立即购买
-              </button>
+              </Button>
             </div>
           </div>
         </div>

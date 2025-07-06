@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useLogin } from '@/hooks/useAuth'
+import { Button } from '@heroui/react'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -114,13 +115,14 @@ export default function LoginPage() {
             )}
 
             <div>
-              <button
+              <Button
                 type="submit"
-                disabled={loginMutation.isPending}
-                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-400"
+                color="primary"
+                isLoading={loginMutation.isPending}
+                className="w-full"
               >
                 {loginMutation.isPending ? '登录中...' : '登录'}
-              </button>
+              </Button>
             </div>
           </form>
 

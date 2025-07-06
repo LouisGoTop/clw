@@ -1,13 +1,13 @@
+'use client'
+
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
-interface SupplierDetailPageProps {
-  params: Promise<{ id: string }>
-}
+export default function SupplierDetailPage() {
+  const params = useParams()
 
-export default async function SupplierDetailPage({
-  params,
-}: SupplierDetailPageProps) {
-  const { id } = await params
+  const id = params.id as string
+
   return (
     <>
       {/* 主要内容区域 */}
@@ -69,11 +69,3 @@ export default async function SupplierDetailPage({
     </>
   )
 }
-
-// 生成静态路径
-export async function generateStaticParams() {
-  return [{ id: '1' }, { id: '2' }, { id: '3' }]
-}
-
-// 启用 SSG
-export const dynamic = 'force-static'

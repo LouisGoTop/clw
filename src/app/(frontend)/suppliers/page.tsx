@@ -1,4 +1,6 @@
+'use client'
 import Link from 'next/link'
+import { Button } from '@heroui/react'
 
 export default function SuppliersPage() {
   return (
@@ -77,9 +79,9 @@ export default function SuppliersPage() {
               </select>
             </div>
             <div className="flex items-end">
-              <button className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+              <Button color="primary" className="w-full">
                 筛选
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -131,21 +133,21 @@ export default function SuppliersPage() {
         {/* 分页 */}
         <div className="mt-8 flex justify-center">
           <nav className="flex items-center space-x-2">
-            <button className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+            <Button variant="light" size="sm">
               上一页
-            </button>
-            <button className="rounded bg-blue-600 px-3 py-2 text-sm font-medium text-white">
+            </Button>
+            <Button color="primary" size="sm">
               1
-            </button>
-            <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">
+            </Button>
+            <Button variant="light" size="sm">
               2
-            </button>
-            <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">
+            </Button>
+            <Button variant="light" size="sm">
               3
-            </button>
-            <button className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+            </Button>
+            <Button variant="light" size="sm">
               下一页
-            </button>
+            </Button>
           </nav>
         </div>
       </div>

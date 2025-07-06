@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useAuthStatus, useUpdateUser, useLogout } from '@/hooks/useAuth'
 import RouteGuard from '@/components/RouteGuard'
 import Link from 'next/link'
+import { Button } from '@heroui/react'
 
 export default function ProfilePage() {
   const { user } = useAuthStatus()
@@ -106,20 +107,16 @@ export default function ProfilePage() {
                         />
                       </div>
                       <div className="flex space-x-4">
-                        <button
+                        <Button
                           type="submit"
-                          disabled={updateUserMutation.isPending}
-                          className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-gray-400"
+                          color="primary"
+                          isLoading={updateUserMutation.isPending}
                         >
                           {updateUserMutation.isPending ? '保存中...' : '保存'}
-                        </button>
-                        <button
-                          type="button"
-                          onClick={handleCancel}
-                          className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
-                        >
+                        </Button>
+                        <Button variant="bordered" onClick={handleCancel}>
                           取消
-                        </button>
+                        </Button>
                       </div>
                     </form>
                   ) : (
@@ -159,19 +156,19 @@ export default function ProfilePage() {
                         </div>
                       </div>
                       <div className="flex space-x-4">
-                        <button
+                        <Button
+                          color="primary"
                           onClick={() => setIsEditing(true)}
-                          className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
                         >
                           编辑资料
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                          color="danger"
+                          isLoading={logoutMutation.isPending}
                           onClick={handleLogout}
-                          disabled={logoutMutation.isPending}
-                          className="rounded-md bg-red-600 px-4 py-2 text-white hover:bg-red-700 disabled:bg-gray-400"
                         >
                           {logoutMutation.isPending ? '登出中...' : '登出'}
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   )}
